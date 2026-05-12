@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getProductById } from '../../../services/productService';
-import { imageMap } from '../../../assets/imageMap';
-import useCartStore from '../../../store/cartStore';
+import { getProductById } from '../../services/productService';
+import { imageMap } from '../../assets/imageMap';
+import useCartStore from '../../store/cartStore';
 
 export default function ProductDetail() {
     const { id } = useParams();

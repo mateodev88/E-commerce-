@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import smile from "../../../assets/smile.png";
-import { loginUser } from "../../../services/authService";
+import smile from "../../assets/smile.png";
+import { loginUser } from "../../services/authService";
 
 const Login = () => {
   const navigate = useNavigate();

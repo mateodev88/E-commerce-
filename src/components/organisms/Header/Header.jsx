@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { subscribeToAuthChanges } from '../../../services/authService';
 import useCartStore from '../../../store/cartStore';
 
-export default function NavBar() {
+export default function Header() {
   const location = useLocation();
   const [loggedInUser, setLoggedInUser] = useState(null);
   const totalItems = useCartStore((state) => state.getTotalItems());

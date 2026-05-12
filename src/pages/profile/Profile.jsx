@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { subscribeToAuthChanges, logoutUser } from '../../../services/authService';
+import { subscribeToAuthChanges, logoutUser } from '../../services/authService';
 
 export default function Profile() {
   const navigate = useNavigate();

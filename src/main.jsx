@@ -3,13 +3,13 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './styles/main.css'
 import Layout from "./components/templates/Layout"
-import Gallery from "./components/organisms/gallery/Gallery"
-import Login from "./components/organisms/login/Login"
-import Register from "./components/organisms/register/Register"
-import Profile from "./components/organisms/profile/Profile"
-import ProductDetail from "./components/organisms/productDetail/ProductDetail"
-import Cart from "./components/organisms/cart/Cart"
-import Checkout from "./components/organisms/checkout/Checkout"
+import Gallery from "./pages/gallery/Gallery"
+import Login from "./pages/login/Login"
+import Register from "./pages/register/Register"
+import Profile from "./pages/profile/Profile"
+import ProductDetail from "./pages/productDetail/ProductDetail"
+import Cart from "./pages/cart/Cart"
+import Checkout from "./pages/checkout/Checkout"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

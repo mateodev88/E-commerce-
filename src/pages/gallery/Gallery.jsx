@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import ProductCard from "../../molecules/ProductCard";
-import { getProducts } from "../../../services/productService";
+import ProductCard from "../../components/molecules/ProductCard";
+import { getProducts } from "../../services/productService";
 
 const ITEMS_PER_PAGE = 4;
 // TODO ESTUDIANTE: ajusta items por pagina y mejora UX de filtros/categorias.
