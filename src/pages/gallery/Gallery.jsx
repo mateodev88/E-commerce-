@@ -15,19 +15,20 @@ export default function Gallery() {
   const [maxPrice, setMaxPrice] = useState(1000);
 
   useEffect(() => {
-    if (products.length === 0) {
-      setLoading(true);
-      getProducts()
-        .then((data) => {
-          setProducts(data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setError(err.message);
-          setLoading(false);
-        });
-    }
-  }, [products.length, setProducts, setLoading, setError]);
+    // AUDITORÍA: Forzamos la carga siempre al montar para asegurar que conectamos con la API real
+    setLoading(true);
+    getProducts()
+      .then((data) => {
+        console.log("API Audit: Datos recibidos con éxito", data);
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("API Audit: Error al conectar con FakeStore", err);
+        setError(`Error de conexión: ${err.message}. Verifica tu internet.`);
+        setLoading(false);
+      });
+  }, [setProducts, setLoading, setError]);
 
   const categories = useMemo(() => {
     const cats = new Set(products.map(p => p.category));
@@ -195,7 +196,7 @@ export default function Gallery() {
           {visibleProducts.length > 0 ? (
             <ProductGallery products={visibleProducts} />
           ) : (
-            <div className="bg-white rounded-[2.5rem] border border-dashed border-gray-200 p-20 text-center">
+            <div className="border rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col bg-white overflow-hidden group border-gray-100 p-20 text-center">
               <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg className="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
