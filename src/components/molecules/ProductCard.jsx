@@ -5,9 +5,20 @@ import ProductPrice from "../atoms/product/ProductPrice";
 import Button from "../atoms/Button";
 import { imageMap } from "../../assets/imageMap";
 import { Link } from "react-router-dom";
+import useCartStore from "../../store/cartStore";
 
 function ProductCard({ product }) {
     const resolvedImage = imageMap[product.image] ?? product.image;
+    const addItem = useCartStore((state) => state.addItem);
+    const [added, setAdded] = React.useState(false);
+
+    const handleAddToCart = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        addItem(product);
+        setAdded(true);
+        setTimeout(() => setAdded(false), 2000);
+    };
 
     return (
         <div className="border rounded-lg shadow-md w-[200px] m-2 hover:shadow-xl transition-all duration-300 flex flex-col bg-white overflow-hidden group">
@@ -24,9 +35,21 @@ function ProductCard({ product }) {
                     <div className="flex items-center justify-between mt-2">
                         <ProductPrice price={product.price} />
                     </div>
-                    <Button className="w-full mt-3 text-sm" variant="primary">
-                        Ver Detalles
-                    </Button>
+                    <div className="flex flex-col gap-2 mt-3">
+                        <Button 
+                            className={`w-full text-xs py-1.5 transition-all ${added ? 'bg-green-600 hover:bg-green-700' : ''}`} 
+                            variant="primary"
+                            onClick={handleAddToCart}
+                            disabled={added}
+                        >
+                            {added ? '¡Añadido!' : 'Añadir al Carrito'}
+                        </Button>
+                        <Link to={`/product/${product.id}`} className="w-full">
+                            <Button className="w-full text-xs py-1.5" variant="outline">
+                                Ver Detalles
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
