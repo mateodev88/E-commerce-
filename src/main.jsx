@@ -10,6 +10,7 @@ import Profile from "./pages/profile/Profile"
 import ProductDetail from "./pages/productDetail/ProductDetail"
 import Cart from "./pages/cart/Cart"
 import Checkout from "./pages/checkout/Checkout"
+import Contact from "./pages/contact/Contact"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="product/:id" element={<ProductDetail />} />
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
+          <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>
     </BrowserRouter>
