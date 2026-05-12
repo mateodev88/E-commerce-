@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ProductImage from "../atoms/product/ProductImage";
 import ProductTitle from "../atoms/product/ProductTitle";
 import ProductRate from "../atoms/product/ProductRate";
@@ -10,7 +11,7 @@ import useCartStore from "../../store/cartStore";
 function ProductCard({ product }) {
     const resolvedImage = imageMap[product.image] ?? product.image;
     const addItem = useCartStore((state) => state.addItem);
-    const [added, setAdded] = React.useState(false);
+    const [added, setAdded] = useState(false);
 
     const handleAddToCart = (e) => {
         e.preventDefault();
