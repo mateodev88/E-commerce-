@@ -22,13 +22,24 @@ export default function ProductDetail() {
     useEffect(() => {
         window.scrollTo(0, 0);
         setLoading(true);
-        getProductById(id).then((data) => {
-            setProduct(data);
-            setLoading(false);
-        });
+        getProductById(id)
+            .then((data) => {
+                if (data) {
+                    setProduct(data);
+                } else {
+                    console.error("API Audit: El producto no existe en la API");
+                }
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("API Audit: Error en detalle", err);
+                setLoading(false);
+            });
 
-        if (products.length === 0) {
-            getProducts().then(setProducts);
+        // Aseguramos que la lista global esté cargada para productos relacionados
+        // Si hay menos de 5, probablemente tenemos datos viejos/mock, así que refrescamos.
+        if (products.length < 5) {
+            getProducts().then(setProducts).catch(e => console.error("Error global refresh", e));
         }
     }, [id, products.length, setProducts]);
 
