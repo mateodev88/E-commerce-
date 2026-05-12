@@ -1,28 +1,61 @@
 @import "tailwindcss";
 
-@theme {
-  /* Definición de colores del ADN */
-  --color-brand-blue: #4D61FF;
-  --color-brand-dark: #32325d;
-  --color-brand-muted: #8898aa;
-  --color-brand-border: #dee2e6;
-  
-  /* Ajustes de radio y sombras para el estilo moderno de la imagen */
-  --radius-dna: 0.5rem;
-  --shadow-dna: 0 4px 11px rgba(77, 97, 255, 0.35);
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.2686 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2686 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2686 0 0);
+  --primary: oklch(0.7686 0.1647 70.0804);
+  --primary-foreground: oklch(0 0 0);
+  --secondary: oklch(0.967 0.0029 264.5419);
+  --secondary-foreground: oklch(0.4461 0.0263 256.8018);
+  --muted: oklch(0.9846 0.0017 247.8389);
+  --muted-foreground: oklch(0.551 0.0234 264.3637);
+  --accent: oklch(0.9869 0.0214 95.2774);
+  --accent-foreground: oklch(0.4732 0.1247 46.2007);
+  --destructive: oklch(0.6368 0.2078 25.3313);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9276 0.0058 264.5313);
+  --input: oklch(0.9276 0.0058 264.5313);
+  --ring: oklch(0.7686 0.1647 70.0804);
+  --radius: 1.225rem;
 }
 
-/* 2. Componentes base con @variant o clases de capa */
-@layer components {
-  .input-dna {
-    @apply w-full border-b border-brand-border py-2 text-brand-dark 
-           outline-none transition-all duration-200 
-           focus:border-brand-blue placeholder:text-brand-muted/50;
-  }
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 3px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
 
-  .btn-dna {
-    @apply flex items-center justify-center gap-2 bg-brand-blue text-white 
-           px-8 py-3 rounded-dna font-semibold transition-all 
-           hover:brightness-110 hover:shadow-dna active:scale-95;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
