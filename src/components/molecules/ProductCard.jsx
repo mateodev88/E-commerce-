@@ -22,7 +22,7 @@ function ProductCard({ product }) {
     };
 
     return (
-        <div className="border rounded-lg shadow-md w-[200px] m-2 hover:shadow-xl transition-all duration-300 flex flex-col bg-white overflow-hidden group">
+        <div className="border rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col bg-white overflow-hidden group border-gray-100">
             <Link to={`/product/${product.id}`} className="block relative overflow-hidden">
                 <ProductImage src={resolvedImage} alt={product.title} />
                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
