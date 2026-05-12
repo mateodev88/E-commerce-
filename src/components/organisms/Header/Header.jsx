@@ -7,6 +7,14 @@ export default function Header() {
   const location = useLocation();
   const [loggedInUser, setLoggedInUser] = useState(null);
   const totalItems = useCartStore((state) => state.getTotalItems());
+  const [isBumping, setIsBumping] = useState(false);
+
+  useEffect(() => {
+    if (totalItems === 0) return;
+    setIsBumping(true);
+    const timer = setTimeout(() => setIsBumping(false), 300);
+    return () => clearTimeout(timer);
+  }, [totalItems]);
 
   useEffect(() => {
     /*
@@ -63,13 +71,16 @@ export default function Header() {
             <li>
               <Link
                 to="/cart"
-                className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 ${
+                className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 flex items-center gap-2 ${
                   isActive('/cart')
                     ? 'text-blue-600 border-blue-600'
                     : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'
                 }`}
               >
-                Cart ({totalItems})
+                <span>Cart</span>
+                <span className={`bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full transition-transform ${isBumping ? 'scale-125' : 'scale-100'}`}>
+                  {totalItems}
+                </span>
               </Link>
             </li>
             {loggedInUser ? (
